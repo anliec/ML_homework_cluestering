@@ -93,9 +93,9 @@ if __name__ == "__main__":
     #     exit(1)
     # data_set_name = sys.argv[1]
     # if data_set_name == "starcraft":
-    result = perceptron(number_of_features=range(5, 31, 5),
+    result = perceptron(number_of_features=range(5, 41, 5),
                         dim_reduction_algrithm=('PCA', 'ICA', 'random', 'LDA'),
-                        number_of_epoch=800,
+                        number_of_epoch=1500,
                         hidden_neurons=((), (35,), (25,), (15,), (10,), (30, 10), (20, 10)),
                         use_batch_norm_values=(True,),
                         optimizer_values=('rmsprop',),
