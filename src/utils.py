@@ -18,11 +18,14 @@ def load_starcraft_to_df():
     return sc
 
 
-def plot_2d(df: pd.DataFrame, x_axis: str, y_axis: str, label_axis: str='label'):
+def plot_2d(df: pd.DataFrame, x_axis: str, y_axis: str, label_axis: str='label', comment=""):
     fig, ax = plt.subplots()
     ax.scatter(df.get(x_axis), df.get(y_axis), c=df.get(label_axis), cmap='gist_ncar', linewidths=1, edgecolors='black')
-    ax.set_xlabel(x_axis, fontsize=15)
-    ax.set_ylabel(y_axis, fontsize=15)
+    ax.set_xlabel(x_axis.replace('_', ' '), fontsize=15)
+    ax.set_ylabel(y_axis.replace('_', ' '), fontsize=15)
+    if comment != "":
+        comment += "_"
+    plt.savefig("graphs/" + comment + x_axis + "_" + y_axis + "_" + label_axis + ".png")
     plt.show()
 
 

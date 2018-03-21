@@ -60,7 +60,7 @@ def reduce_dimension(dataset, algorithm: str, nb_of_dimention: int, out_file=Non
             plt.show()
         else:
             raise ValueError('Curve not yet implemented for other algorithm than PCA')
-    return tdf
+    return tdf, algo
 
 
 def get_data(number_of_feature: int, algorithm: str):
@@ -68,10 +68,15 @@ def get_data(number_of_feature: int, algorithm: str):
     sc = load_starcraft_to_df()
     label = sc.get('label')
     sc = sc.drop('label', 1)
-    sc = reduce_dimension(sc, algorithm, number_of_feature, labels=label)
+    sc, algo = reduce_dimension(sc[:TRAIN_DATASET_LENGHT],
+                                algorithm,
+                                number_of_feature,
+                                labels=label[:TRAIN_DATASET_LENGHT]
+                                )
     x_train = sc[:TRAIN_DATASET_LENGHT]
-    x_test = sc[TRAIN_DATASET_LENGHT:]
     y_train = label[:TRAIN_DATASET_LENGHT]
+
+    x_test = algo.transform(X=sc[TRAIN_DATASET_LENGHT:])
     y_test = label[TRAIN_DATASET_LENGHT:]
     return x_train, y_train, x_test, y_test
 
