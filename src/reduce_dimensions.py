@@ -68,12 +68,12 @@ def get_data(number_of_feature: int, algorithm: str):
     sc = load_starcraft_to_df()
     label = sc.get('label')
     sc = sc.drop('label', 1)
-    sc, algo = reduce_dimension(sc[:TRAIN_DATASET_LENGHT],
-                                algorithm,
-                                number_of_feature,
-                                labels=label[:TRAIN_DATASET_LENGHT]
-                                )
-    x_train = sc[:TRAIN_DATASET_LENGHT]
+    data, algo = reduce_dimension(sc[:TRAIN_DATASET_LENGHT],
+                                  algorithm,
+                                  number_of_feature,
+                                  labels=label[:TRAIN_DATASET_LENGHT]
+                                  )
+    x_train = data[:TRAIN_DATASET_LENGHT]
     y_train = label[:TRAIN_DATASET_LENGHT]
 
     x_test = algo.transform(X=sc[TRAIN_DATASET_LENGHT:])
