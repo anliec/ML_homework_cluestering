@@ -55,8 +55,29 @@ def reduce_dimension(dataset, algorithm: str, nb_of_dimention: int, out_file=Non
                 score_list[0, i] = old_sum
                 score_list[1, i] = v
             plt.figure(1)
-            plt.plot(range(len(eigenvalues)), score_list[0] / np.max(score_list[0]))
-            plt.plot(range(len(eigenvalues)), score_list[1] / np.max(score_list[1]))
+            plt.plot(range(len(eigenvalues)), score_list[0] / np.max(score_list[0]), label="normalized eigenvalue sum")
+            plt.plot(range(len(eigenvalues)), score_list[1] / np.max(score_list[1]), label="normalized eigenvalues")
+            plt.legend()
+            plt.xlabel("Dimension")
+            plt.savefig("graphs/" + algorithm + "_dimension_importance_" + str(nb_of_dimention) + ".png")
+            plt.show()
+        elif algorithm == 'LDA':
+            # print(algo.covariance_)
+            eigenvalues = np.diag(algo.covariance_).copy()
+            eigenvalues.sort()
+            eigenvalues = np.flip(eigenvalues, 0)
+            score_list = np.zeros((2, len(eigenvalues)), dtype=np.float64)
+            old_sum = 0.0
+            for i, v in enumerate(eigenvalues):
+                old_sum += v
+                score_list[0, i] = old_sum
+                score_list[1, i] = v
+            plt.figure(1)
+            plt.plot(range(len(eigenvalues)), score_list[0] / np.max(score_list[0]), label="normalized eigenvalue sum")
+            plt.plot(range(len(eigenvalues)), score_list[1] / np.max(score_list[1]), label="normalized eigenvalues")
+            plt.legend()
+            plt.xlabel("Dimension")
+            # plt.savefig("graphs/" + algorithm + "_dimension_importance_" + str(nb_of_dimention) + ".png")
             plt.show()
         else:
             raise ValueError('Curve not yet implemented for other algorithm than PCA')
@@ -90,5 +111,5 @@ if __name__ == '__main__':
     labels = sc.get('label')
     sc = sc.drop('label', 1)
     print(labels.shape, sc.shape)
-    pca_sc = reduce_dimension(sc, 'LDA', 70, plot_curve=False, labels=labels)
+    pca_sc = reduce_dimension(sc, 'LDA', 70, plot_curve=True, labels=labels)
 
