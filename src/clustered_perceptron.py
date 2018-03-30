@@ -72,6 +72,7 @@ def perceptron(clustering_algorithms, number_of_features, dim_reduction_algrithm
                                     tmp = tmp.assign(train_size=pd.Series([str(train_limit)] * number_of_epoch))
                                     tmp = tmp.assign(reduction_method=pd.Series([algo] * number_of_epoch))
                                     tmp = tmp.assign(number_of_feature=pd.Series([num_feature] * number_of_epoch))
+                                    tmp = tmp.assign(clustering_method=pd.Series([clustering] * number_of_epoch))
                                     if out_file_name is None:
                                         df = df.append(tmp, ignore_index=True)
                                     else:
