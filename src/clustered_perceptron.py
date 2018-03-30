@@ -91,7 +91,7 @@ if __name__ == "__main__":
     result = perceptron(clustering_algorithms=("EM", "kmeans"),
                         number_of_features=range(5, 41, 5),
                         dim_reduction_algrithm=('PCA', 'ICA', 'random', 'LDA'),
-                        number_of_epoch=1,#1500,
+                        number_of_epoch=1500,
                         hidden_neurons=((), (35,), (25,), (15,), (10,), (30, 10), (20, 10)),
                         use_batch_norm_values=(True,),
                         optimizer_values=('rmsprop',),
