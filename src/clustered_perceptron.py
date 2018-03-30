@@ -52,6 +52,7 @@ def perceptron(clustering_algorithms, number_of_features, dim_reduction_algrithm
                                 for train_limit in training_sizes:
                                     _, features = x_learn.shape
                                     _, classes = y_learn.shape
+                                    assert features == x_test.shape[1] and classes == y_test.shape[1]
                                     model = get_model(features, classes, layers, use_batch_norm, opt, act)
                                     h = model.fit(x=np.array(x_learn[:train_limit]),
                                                   y=np.array(y_learn[:train_limit]),
@@ -87,10 +88,10 @@ def perceptron(clustering_algorithms, number_of_features, dim_reduction_algrithm
 
 
 if __name__ == "__main__":
-    result = perceptron(clustering_algorithms=("kmeans", "EM"),
+    result = perceptron(clustering_algorithms=("EM", "kmeans"),
                         number_of_features=range(5, 41, 5),
                         dim_reduction_algrithm=('PCA', 'ICA', 'random', 'LDA'),
-                        number_of_epoch=1500,
+                        number_of_epoch=1,#1500,
                         hidden_neurons=((), (35,), (25,), (15,), (10,), (30, 10), (20, 10)),
                         use_batch_norm_values=(True,),
                         optimizer_values=('rmsprop',),

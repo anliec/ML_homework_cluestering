@@ -53,11 +53,11 @@ def get_clustered_data(number_of_feature: int, algorithm: str, clustering_name: 
 
     labels = x_train.get('label')
     x_train = x_train.drop('label', 1)
-    labels = to_categorical(labels)
+    labels = to_categorical(labels, number_of_classes)
     x_train = x_train.join(pd.DataFrame(labels), rsuffix="_label")
 
     labels = algo.predict(x_test)
-    labels = to_categorical(labels)
+    labels = to_categorical(labels, number_of_classes)
     x_test = pd.DataFrame(x_test)
     x_test = x_test.join(pd.DataFrame(labels), rsuffix="_label")
 
