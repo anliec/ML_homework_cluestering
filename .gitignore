@@ -5,5 +5,8 @@ __pychache__*
 *.png
 *.db
 
+report/
+!*.tex
+!*.pdf
 
 per23.out
