@@ -85,14 +85,6 @@ def perceptron(number_of_features, dim_reduction_algrithm, number_of_epoch, hidd
 
 
 if __name__ == "__main__":
-    # if len(sys.argv) != 2:
-    #     print("Wrong command line argument !")
-    #     print()
-    #     print("Expected call is:", sys.argv[0], "[dataset]")
-    #     print("dataset: one of \"creditcard\" or \"starcraft\"")
-    #     exit(1)
-    # data_set_name = sys.argv[1]
-    # if data_set_name == "starcraft":
     result = perceptron(number_of_features=range(5, 41, 5),
                         dim_reduction_algrithm=('PCA', 'ICA', 'random', 'LDA'),
                         number_of_epoch=1500,
@@ -103,9 +95,4 @@ if __name__ == "__main__":
                         training_sizes=(-1,),
                         out_file_name="perceptron"
                         )
-    # else:
-    #     raise ValueError("unknow dataset:", data_set_name)
-    # if not os.path.exists("stats"):
-    #     os.makedirs("stats")
-    # result.to_csv(path_or_buf="stats/per_" + data_set_name + ".csv")
 
