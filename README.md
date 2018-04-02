@@ -10,6 +10,11 @@
  
 (the code may run with earlier version)
 
+## Dataset
+
+All the data ued in this work are provided on
+the `data` directory.
+
 ## Running the experiments
 
 To get the same results as the one presented 
